@@ -1,3 +1,42 @@
 .App {
   text-align: center;
 }
+
+.NavList ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid grey;
+}
+
+.NavList li {
+  float: left;
+  margin: 3px;
+  padding: 2px;
+  border-right: 1px solid black;
+  padding-right: 5px;
+}
+
+.NavList li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.NavList li a:hover {
+  background-color: #111111;
+}
+
+.AllArticles ul {
+  list-style-type: none;
+  padding: 0px 0px 0px 0px;
+}
+
+.AllArticles li {
+  margin: 5px;
+  border-top: 1px solid black;
+}
