@@ -16,8 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/articles" element={<AllArticles />} />
-          <Route path="/articles/:article_topic" element={<TopicArticles />} />
-          <Route path="/:article_id" element={<IndividualArticle />} />
+          <Route path="/topics/:article_topic" element={<TopicArticles />} />
+          <Route path="/articles/:article_id" element={<IndividualArticle />} />
         </Routes>
       </div>
     </BrowserRouter>

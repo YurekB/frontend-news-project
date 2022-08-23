@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import { getArticleById, getArticleComments } from "../functions/functions";
+import { getArticleById } from "../functions/functions";
 import { useEffect, useState } from "react";
+import Comments from "./Comments";
 
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
-  const [comments, setComments] = useState([]);
 
   const { article_id } = useParams();
 
@@ -12,13 +12,7 @@ const IndividualArticle = () => {
     getArticleById(article_id).then((res) => {
       setArticle(res);
     });
-    getArticleComments(article_id).then((res) => {
-      console.log(res);
-      setComments(res);
-    });
   }, []);
-
-  console.log(comments);
 
   return (
     <div className="ArticlePage">
@@ -32,22 +26,7 @@ const IndividualArticle = () => {
         <button>Like</button>
         <button>Dislike</button>
       </div>
-      <div className="Comments">
-        <h2 className="Comments">Comments:</h2>
-        <ul>
-          {comments.map((comment) => {
-            return (
-              <div className="Comment">
-                <li key={comment.comment_id}>
-                  {comment.body}
-                  Written by: {comment.author}
-                  Votes: {comment.votes}
-                </li>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <Comments article_id={article_id} />
     </div>
   );
 };

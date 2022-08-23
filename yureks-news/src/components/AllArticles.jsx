@@ -18,7 +18,7 @@ const AllArticles = () => {
         <ul>
           {articles.map((article) => {
             return (
-              <Link to={`/${article.article_id}`}>
+              <Link to={`/articles/${article.article_id}`}>
                 <li key={article.title}>{article.title}</li>
               </Link>
             );
