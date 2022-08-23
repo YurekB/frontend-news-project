@@ -15,3 +15,11 @@ export const getArticles = () => {
       return res.data.articles;
     });
 };
+
+export const getArticleByTopic = (topic) => {
+  return axios
+    .get(`https://yureks-app.herokuapp.com/api/articles?topic=${topic}`)
+    .then((res) => {
+      return res.data.articles;
+    });
+};

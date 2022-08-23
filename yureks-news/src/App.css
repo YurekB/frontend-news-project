@@ -31,12 +31,12 @@
   background-color: #111111;
 }
 
-.AllArticles ul {
+.PageList ul {
   list-style-type: none;
   padding: 0px 0px 0px 0px;
 }
 
-.AllArticles li {
+.PageList li {
   margin: 5px;
   border-top: 1px solid black;
 }

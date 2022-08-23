@@ -15,13 +15,15 @@ const NavBar = () => {
     <div className="NavList">
       <ul>
         <Link to="/articles">
-          <li>All Articles</li>
+          <li key="AllArticles">All Articles</li>
         </Link>
         {topics.map((topic) => {
           return (
-            <li key={topic.slug}>
-              {topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}
-            </li>
+            <Link to={`/articles/${topic.slug}`}>
+              <li key={topic.slug}>
+                {topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}
+              </li>
+            </Link>
           );
         })}
         <li>Other</li>
