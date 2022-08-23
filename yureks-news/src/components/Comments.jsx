@@ -12,11 +12,24 @@ const Comments = ({ article_id }) => {
 
   return (
     <div className="Comments">
-      <ul>
-        {comments.map((comm) => {
-          return <li key={comm.comment_id}>{comm.body}</li>;
-        })}
-      </ul>
+      <h2>Comments:</h2>
+      <div className="CommentsList">
+        <ul>
+          {comments.map((comm) => {
+            return (
+              <li key={comm.comment_id}>
+                User: {comm.author}
+                <br />
+                {comm.body}
+                <br />
+                {comm.created_at}
+                <br />
+                Votes: {comm.votes}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const NavBar = () => {
             </Link>
           );
         })}
-        <li>Other</li>
+        <li key="Other">Other</li>
       </ul>
     </div>
   );

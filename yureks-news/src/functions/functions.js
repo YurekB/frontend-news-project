@@ -39,3 +39,11 @@ export const getArticleComments = (id) => {
       return res.data.comments;
     });
 };
+
+export const addArticleLike = (id, body) => {
+  return axios
+    .patch(`https://yureks-app.herokuapp.com/api/articles/${id}`, body)
+    .then((res) => {
+      return res.data.article;
+    });
+};

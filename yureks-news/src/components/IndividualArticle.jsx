@@ -1,18 +1,35 @@
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../functions/functions";
+import { getArticleById, addArticleLike } from "../functions/functions";
 import { useEffect, useState } from "react";
-import Comments from "./Comments";
+// import Comments from "./Comments";
 
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
-
   const { article_id } = useParams();
 
   useEffect(() => {
     getArticleById(article_id).then((res) => {
       setArticle(res);
     });
-  }, []);
+  }, [article_id]);
+
+  const VotesAdd = (event) => {
+    let likeChange = {};
+
+    if (event.target.value === "like") {
+      likeChange = { inc_votes: 1 };
+    } else {
+      likeChange = { inc_votes: -1 };
+    }
+
+    addArticleLike(article_id, likeChange)
+      .then((res) => {
+        setArticle(res);
+      })
+      .catch((err) => {
+        return <p>{err}</p>;
+      });
+  };
 
   return (
     <div className="ArticlePage">
@@ -23,10 +40,26 @@ const IndividualArticle = () => {
         <p className="ArticleAuthor">Written by: {article.author}</p>
         <p className="ArticleDate">{article.created_at}</p>
         <p className="ArticleVoted">{article.votes}</p>
-        <button>Like</button>
-        <button>Dislike</button>
+        <button
+          onClick={(event) => {
+            VotesAdd(event);
+          }}
+          value="like"
+        >
+          {" "}
+          Like{" "}
+        </button>
+        <button
+          onClick={(event) => {
+            VotesAdd(event);
+          }}
+          value="dislike"
+        >
+          {" "}
+          Dislike
+        </button>
       </div>
-      <Comments article_id={article_id} />
+      {/* <Comments article_id={article_id} /> */}
     </div>
   );
 };
