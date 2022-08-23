@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getArticleById, addArticleLike } from "../functions/functions";
 import { useEffect, useState } from "react";
-// import Comments from "./Comments";
+import Comments from "./Comments";
 
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
@@ -59,7 +59,7 @@ const IndividualArticle = () => {
           Dislike
         </button>
       </div>
-      {/* <Comments article_id={article_id} /> */}
+      <Comments article_id={article_id} />
     </div>
   );
 };
