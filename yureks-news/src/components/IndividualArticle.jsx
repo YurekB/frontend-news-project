@@ -13,20 +13,16 @@ const IndividualArticle = () => {
     });
   }, [article_id]);
 
-  const VotesAdd = () => {
-    const addLike = { inc_votes: 1 };
-    addArticleLike(article_id, addLike)
-      .then((res) => {
-        setArticle(res);
-      })
-      .catch((err) => {
-        return <p>{err}</p>;
-      });
-  };
+  const VotesAdd = (event) => {
+    let likeChange = {};
 
-  const VotesRemove = () => {
-    const RemoveLike = { inc_votes: -1 };
-    addArticleLike(article_id, RemoveLike)
+    if (event.target.value === "like") {
+      likeChange = { inc_votes: 1 };
+    } else {
+      likeChange = { inc_votes: -1 };
+    }
+
+    addArticleLike(article_id, likeChange)
       .then((res) => {
         setArticle(res);
       })
@@ -44,8 +40,24 @@ const IndividualArticle = () => {
         <p className="ArticleAuthor">Written by: {article.author}</p>
         <p className="ArticleDate">{article.created_at}</p>
         <p className="ArticleVoted">{article.votes}</p>
-        <button onClick={VotesAdd}>Like</button>
-        <button onClick={VotesRemove}>Dislike</button>
+        <button
+          onClick={(event) => {
+            VotesAdd(event);
+          }}
+          value="like"
+        >
+          {" "}
+          Like{" "}
+        </button>
+        <button
+          onClick={(event) => {
+            VotesAdd(event);
+          }}
+          value="dislike"
+        >
+          {" "}
+          Dislike
+        </button>
       </div>
       {/* <Comments article_id={article_id} /> */}
     </div>

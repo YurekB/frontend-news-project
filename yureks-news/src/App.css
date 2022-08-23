@@ -40,3 +40,18 @@
   margin: 5px;
   border-top: 1px solid black;
 }
+
+.CommentsList ul {
+  list-style-type: none;
+  padding: 0px 0px 0px 0px;
+}
+
+.CommentsList li {
+  margin: 5px;
+  border-top: 1px solid black;
+}
+
+.Comments {
+  margin-top: 10px;
+  border: 3px solid black;
+}
