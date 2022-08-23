@@ -13,7 +13,7 @@ const AllArticles = () => {
   return (
     <>
       <h2>All Articles:</h2>
-      <div className="AllArticles">
+      <div className="PageList">
         <ul>
           {articles.map((article) => {
             return <li key={article.title}>{article.title}</li>;

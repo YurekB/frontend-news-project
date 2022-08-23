@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./components/MainPage";
 import AllArticles from "./components/AllArticles";
 
+import TopicArticles from "./components/TopicArticles";
+
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/articles" element={<AllArticles />} />
+          <Route path="/articles/:article_topic" element={<TopicArticles />} />
         </Routes>
       </div>
     </BrowserRouter>
