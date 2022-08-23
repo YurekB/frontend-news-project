@@ -23,3 +23,19 @@ export const getArticleByTopic = (topic) => {
       return res.data.articles;
     });
 };
+
+export const getArticleById = (id) => {
+  return axios
+    .get(`https://yureks-app.herokuapp.com/api/articles/${id}`)
+    .then((res) => {
+      return res.data.article;
+    });
+};
+
+export const getArticleComments = (id) => {
+  return axios
+    .get(`https://yureks-app.herokuapp.com/api/articles/${id}/comments`)
+    .then((res) => {
+      return res.data.comments;
+    });
+};

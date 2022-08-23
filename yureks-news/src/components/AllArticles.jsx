@@ -1,5 +1,6 @@
 import { getArticles } from "../functions/functions";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AllArticles = () => {
   const [articles, setArticles] = useState([]);
@@ -16,7 +17,11 @@ const AllArticles = () => {
       <div className="PageList">
         <ul>
           {articles.map((article) => {
-            return <li key={article.title}>{article.title}</li>;
+            return (
+              <Link to={`/${article.article_id}`}>
+                <li key={article.title}>{article.title}</li>
+              </Link>
+            );
           })}
         </ul>
       </div>
