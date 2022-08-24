@@ -8,15 +8,34 @@ export const getTopics = () => {
     });
 };
 
-export const getArticles = () => {
-  return axios
-    .get("https://yureks-app.herokuapp.com/api/articles")
-    .then((res) => {
-      return res.data.articles;
-    });
+export const getArticles = (paramsObj) => {
+  if (paramsObj) {
+    return axios
+      .get("https://yureks-app.herokuapp.com/api/articles", {
+        params: paramsObj,
+      })
+      .then((res) => {
+        return res.data.articles;
+      });
+  } else {
+    return axios
+      .get("https://yureks-app.herokuapp.com/api/articles")
+      .then((res) => {
+        return res.data.articles;
+      });
+  }
 };
 
-export const getArticleByTopic = (topic) => {
+export const getArticleByTopic = (topic, paramsObj) => {
+  if (paramsObj) {
+    return axios
+      .get(`https://yureks-app.herokuapp.com/api/articles?topic=${topic}`, {
+        params: paramsObj,
+      })
+      .then((res) => {
+        return res.data.articles;
+      });
+  }
   return axios
     .get(`https://yureks-app.herokuapp.com/api/articles?topic=${topic}`)
     .then((res) => {
