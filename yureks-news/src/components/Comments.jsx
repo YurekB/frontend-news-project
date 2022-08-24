@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getArticleComments } from "../functions/functions";
 
-const Comments = ({ article_id }) => {
-  const [comments, setComments] = useState([]);
-
+const Comments = ({ article_id, comments, setComments }) => {
   useEffect(() => {
     getArticleComments(article_id).then((res) => {
       setComments(res);
     });
-  }, [article_id]);
+  }, [article_id, comments, setComments]);
 
   return (
     <div className="Comments">

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { postComment } from "../functions/functions";
+import { postComment, getArticleComments } from "../functions/functions";
 import { useParams } from "react-router-dom";
+import { getCurrentDate } from "../functions/functions";
 
-const AddAComment = () => {
+const AddAComment = ({ comments, setComments }) => {
   const [comment, setComment] = useState({ username: "", body: "" });
   const [commMsg, setCommMsg] = useState("");
 
@@ -18,6 +19,8 @@ const AddAComment = () => {
     setComment({
       username: event.target[0].value,
       body: event.target[1].value,
+      created_at: getCurrentDate(),
+      votes: 0,
     });
 
     postComment(article_id, comment)
@@ -31,6 +34,10 @@ const AddAComment = () => {
       });
 
     setInterval(setCommMsg(""), 1000);
+
+    getArticleComments(article_id).then((res) => {
+      setComments(res);
+    });
   };
 
   return (
