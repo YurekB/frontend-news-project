@@ -20,8 +20,6 @@ const AddAComment = () => {
       body: event.target[1].value,
     });
 
-    console.log(comment);
-
     postComment(article_id, comment)
       .then((res) => {
         setCommMsg(
