@@ -52,6 +52,18 @@
 }
 
 .Comments {
-  margin-top: 10px;
+  margin: 10px;
   border: 3px solid black;
+}
+
+.AddAComment {
+  border: 2px solid black;
+  padding: 5px;
+  margin: 10px;
+}
+
+.Article {
+  border: 3px solid black;
+  margin: 10px;
+  padding: 10px;
 }

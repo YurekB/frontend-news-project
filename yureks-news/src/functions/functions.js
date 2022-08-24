@@ -47,3 +47,22 @@ export const addArticleLike = (id, body) => {
       return res.data.article;
     });
 };
+
+export const postComment = (id, body) => {
+  return axios
+    .post(`https://yureks-app.herokuapp.com/api/articles/${id}/comments`, body)
+    .then((res) => {
+      return res.data.comment;
+    });
+};
+
+export function getCurrentDate(separator = "") {
+  let newDate = new Date();
+  let date = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
+
+  return `${year}${separator}${
+    month < 10 ? `0${month}` : `${month}`
+  }${separator}${date}`;
+}
