@@ -25,9 +25,7 @@ const AddAComment = ({ comments, setComments }) => {
 
     postComment(article_id, comment)
       .then((res) => {
-        setCommMsg(
-          "Comment added successfully! Refresh page for it to appear!"
-        );
+        setCommMsg("Comment added successfully!");
       })
       .catch(() => {
         setCommMsg("An error occurred adding your comment!");
@@ -38,6 +36,9 @@ const AddAComment = ({ comments, setComments }) => {
     getArticleComments(article_id).then((res) => {
       setComments(res);
     });
+
+    event.target[0].value = "";
+    event.target[1].value = "";
   };
 
   return (
