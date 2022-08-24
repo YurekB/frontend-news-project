@@ -26,7 +26,6 @@ const NavBar = () => {
             </Link>
           );
         })}
-        <li key="Other">Other</li>
       </ul>
     </div>
   );
