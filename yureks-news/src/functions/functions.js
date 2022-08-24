@@ -47,3 +47,12 @@ export const addArticleLike = (id, body) => {
       return res.data.article;
     });
 };
+
+export const postComment = (id, body) => {
+  console.log(id, body);
+  return axios
+    .post(`https://yureks-app.herokuapp.com/api/articles/${id}/comments`, body)
+    .then((res) => {
+      console.log(res);
+    });
+};

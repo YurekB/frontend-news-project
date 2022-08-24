@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { getArticleById, addArticleLike } from "../functions/functions";
 import { useEffect, useState } from "react";
 import Comments from "./Comments";
+import AddAComment from "./AddAComment";
 
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
@@ -59,6 +60,7 @@ const IndividualArticle = () => {
           Dislike
         </button>
       </div>
+      <AddAComment />
       <Comments article_id={article_id} />
     </div>
   );

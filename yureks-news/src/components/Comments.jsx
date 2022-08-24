@@ -8,7 +8,7 @@ const Comments = ({ article_id }) => {
     getArticleComments(article_id).then((res) => {
       setComments(res);
     });
-  }, []);
+  }, [article_id]);
 
   return (
     <div className="Comments">
