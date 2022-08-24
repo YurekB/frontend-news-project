@@ -1,18 +1,20 @@
 import { getArticles } from "../functions/functions";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SortByDropdown from "./SortByDropdown";
 
-const AllArticles = () => {
+const AllArticles = ({ sortBy, setSortBy }) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getArticles().then((res) => {
+    getArticles({ sort_by: sortBy }).then((res) => {
       setArticles(res);
     });
-  }, []);
+  }, [sortBy]);
 
   return (
     <>
+      <SortByDropdown setSortBy={setSortBy} />
       <h2>All Articles:</h2>
       <div className="PageList">
         <ul>

@@ -6,8 +6,11 @@ import MainPage from "./components/MainPage";
 import AllArticles from "./components/AllArticles";
 import TopicArticles from "./components/TopicArticles";
 import IndividualArticle from "./components/IndividualArticle";
+import { useState } from "react";
 
 function App() {
+  const [sortBy, setSortBy] = useState("votes");
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -15,8 +18,14 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/articles" element={<AllArticles />} />
-          <Route path="/topics/:article_topic" element={<TopicArticles />} />
+          <Route
+            path="/articles"
+            element={<AllArticles sortBy={sortBy} setSortBy={setSortBy} />}
+          />
+          <Route
+            path="/topics/:article_topic"
+            element={<TopicArticles sortBy={sortBy} setSortBy={setSortBy} />}
+          />
           <Route path="/articles/:article_id" element={<IndividualArticle />} />
         </Routes>
       </div>
