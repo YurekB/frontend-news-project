@@ -10,7 +10,6 @@ export const getTopics = () => {
 
 export const getArticles = (paramsObj) => {
   if (paramsObj) {
-    paramsObj.order = "asc";
     return axios
       .get("https://yureks-app.herokuapp.com/api/articles", {
         params: paramsObj,
@@ -29,7 +28,6 @@ export const getArticles = (paramsObj) => {
 
 export const getArticleByTopic = (topic, paramsObj) => {
   if (paramsObj) {
-    paramsObj.order = "asc";
     return axios
       .get(`https://yureks-app.herokuapp.com/api/articles?topic=${topic}`, {
         params: paramsObj,

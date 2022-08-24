@@ -3,17 +3,18 @@ import { getArticleByTopic } from "../functions/functions";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SortByDropdown from "./SortByDropdown";
+import OrderByDropdown from "./OrderByDropdown";
 
-const TopicArticles = ({ sortBy, setSortBy }) => {
+const TopicArticles = ({ sortBy, setSortBy, order, setOrder }) => {
   const [articles, setArticles] = useState([]);
 
   const { article_topic } = useParams();
 
   useEffect(() => {
-    getArticleByTopic(article_topic, { sort_by: sortBy }).then((res) => {
+    getArticleByTopic(article_topic, { sort_by: sortBy, order }).then((res) => {
       setArticles(res);
     });
-  }, [article_topic, sortBy]);
+  }, [article_topic, sortBy, order]);
 
   return (
     <div className="PageList">
@@ -22,6 +23,7 @@ const TopicArticles = ({ sortBy, setSortBy }) => {
         Articles:
       </h2>
       Sort by: <SortByDropdown setSortBy={setSortBy} />
+      Order: <OrderByDropdown setOrder={setOrder} />
       <ul>
         {articles.map((article) => {
           return (

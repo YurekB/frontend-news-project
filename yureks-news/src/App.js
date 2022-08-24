@@ -10,6 +10,7 @@ import { useState } from "react";
 
 function App() {
   const [sortBy, setSortBy] = useState("votes");
+  const [order, setOrder] = useState("asc");
 
   return (
     <BrowserRouter>
@@ -20,11 +21,25 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route
             path="/articles"
-            element={<AllArticles sortBy={sortBy} setSortBy={setSortBy} />}
+            element={
+              <AllArticles
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                order={order}
+                setOrder={setOrder}
+              />
+            }
           />
           <Route
             path="/topics/:article_topic"
-            element={<TopicArticles sortBy={sortBy} setSortBy={setSortBy} />}
+            element={
+              <TopicArticles
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                order={order}
+                setOrder={setOrder}
+              />
+            }
           />
           <Route path="/articles/:article_id" element={<IndividualArticle />} />
         </Routes>
