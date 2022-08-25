@@ -25,9 +25,11 @@ const AddAComment = ({ comments, setComments, loggedInUser }) => {
     postComment(article_id, comment)
       .then((res) => {
         setCommMsg("Comment added successfully!");
+        setComment({ username: loggedInUser, body: "" });
       })
       .catch(() => {
         setCommMsg("An error occurred adding your comment!");
+        setComment({ username: loggedInUser, body: "" });
       });
 
     setInterval(setCommMsg(""), 1000);
