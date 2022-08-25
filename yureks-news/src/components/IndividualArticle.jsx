@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom";
-import { getArticleById, addArticleLike } from "../functions/functions";
+import {
+  getArticleById,
+  addArticleLike,
+  getArticles,
+} from "../functions/functions";
 import { useEffect, useState } from "react";
 import Comments from "./Comments";
 import AddAComment from "./AddAComment";
 import NavBar from "./NavBar";
+import NotFound from "./NotFoundPage";
 
 const IndividualArticle = ({ loggedInUser }) => {
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
+  const [articles, setArticles] = useState([]);
+  const artIdArr = [];
 
   const { article_id } = useParams();
 
@@ -16,6 +23,21 @@ const IndividualArticle = ({ loggedInUser }) => {
       setArticle(res);
     });
   }, [article_id]);
+
+  useEffect(() => {
+    getArticles().then((res) => {
+      setArticles(res);
+    });
+  }, [article]);
+
+  articles.map((art) => {
+    artIdArr.push(art.article_id);
+    return art;
+  });
+
+  if (!artIdArr.includes(parseInt(article_id))) {
+    return <NotFound />;
+  }
 
   const VotesAdd = (event) => {
     let likeChange = {};

@@ -5,17 +5,35 @@ import { Link } from "react-router-dom";
 import SortByDropdown from "./SortByDropdown";
 import OrderByDropdown from "./OrderByDropdown";
 import NavBar from "./NavBar";
+import { getTopics } from "../functions/functions";
+import NotFound from "./NotFoundPage";
 
 const TopicArticles = ({ sortBy, setSortBy, order, setOrder }) => {
   const [articles, setArticles] = useState([]);
-
+  const [topics, setTopics] = useState([]);
   const { article_topic } = useParams();
+  const topicArr = [];
+
+  useEffect(() => {
+    getTopics().then((res) => {
+      setTopics(res);
+    });
+  }, [topics]);
 
   useEffect(() => {
     getArticleByTopic(article_topic, { sort_by: sortBy, order }).then((res) => {
       setArticles(res);
     });
   }, [article_topic, sortBy, order]);
+
+  topics.map((topic) => {
+    topicArr.push(topic.slug);
+    return topic;
+  });
+
+  if (!topicArr.includes(article_topic)) {
+    return <NotFound />;
+  }
 
   return (
     <>
