@@ -6,6 +6,7 @@ import AllArticles from "./components/AllArticles";
 import TopicArticles from "./components/TopicArticles";
 import IndividualArticle from "./components/IndividualArticle";
 import { useState } from "react";
+import NotFound from "./components/NotFoundPage";
 
 function App() {
   const [sortBy, setSortBy] = useState("votes");
@@ -47,6 +48,7 @@ function App() {
             path="/articles/:article_id"
             element={<IndividualArticle loggedInUser={loggedInUser} />}
           />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
