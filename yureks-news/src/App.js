@@ -1,8 +1,7 @@
 import "./App.css";
 import Header from "./components/Header";
-import NavBar from "./components/NavBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainPage from "./components/MainPage";
+import LoginPage from "./components/LoginPage";
 import AllArticles from "./components/AllArticles";
 import TopicArticles from "./components/TopicArticles";
 import IndividualArticle from "./components/IndividualArticle";
@@ -11,14 +10,17 @@ import { useState } from "react";
 function App() {
   const [sortBy, setSortBy] = useState("votes");
   const [order, setOrder] = useState("asc");
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
-        <NavBar />
+        <Header loggedInUser={loggedInUser} />
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route
+            path="/"
+            element={<LoginPage setLoggedInUser={setLoggedInUser} />}
+          />
           <Route
             path="/articles"
             element={
@@ -41,7 +43,10 @@ function App() {
               />
             }
           />
-          <Route path="/articles/:article_id" element={<IndividualArticle />} />
+          <Route
+            path="/articles/:article_id"
+            element={<IndividualArticle loggedInUser={loggedInUser} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

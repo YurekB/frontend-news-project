@@ -85,3 +85,22 @@ export function getCurrentDate(separator = "") {
     month < 10 ? `0${month}` : `${month}`
   }${separator}${date}`;
 }
+
+export const getCommentById = (id) => {
+  return axios
+    .get(`https://yureks-app.herokuapp.com/api/comments/${id}`)
+    .then((res) => {
+      return res.data.comment;
+    });
+};
+
+export const deleteCommentById = (id) => {
+  return axios
+    .delete(`https://yureks-app.herokuapp.com/api/comments/${id}`)
+    .then((res) => {
+      return "Successfully deleted!";
+    })
+    .catch(() => {
+      return "Error when deleting!";
+    });
+};

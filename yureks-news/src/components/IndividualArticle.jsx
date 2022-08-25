@@ -3,8 +3,9 @@ import { getArticleById, addArticleLike } from "../functions/functions";
 import { useEffect, useState } from "react";
 import Comments from "./Comments";
 import AddAComment from "./AddAComment";
+import NavBar from "./NavBar";
 
-const IndividualArticle = () => {
+const IndividualArticle = ({ loggedInUser }) => {
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
 
@@ -35,40 +36,50 @@ const IndividualArticle = () => {
   };
 
   return (
-    <div className="ArticlePage">
-      <div className="Article">
-        <h2 className="ArticleTitle">{article.title}</h2>
-        <p className="ArticleTopic">Topic: {article.topic}</p>
-        <p className="ArticleBody">{article.body}</p>
-        <p className="ArticleAuthor">Written by: {article.author}</p>
-        <p className="ArticleDate">{article.created_at}</p>
-        <p className="ArticleVoted">{article.votes}</p>
-        <button
-          onClick={(event) => {
-            VotesAdd(event);
-          }}
-          value="like"
-        >
-          {" "}
-          Like{" "}
-        </button>
-        <button
-          onClick={(event) => {
-            VotesAdd(event);
-          }}
-          value="dislike"
-        >
-          {" "}
-          Dislike
-        </button>
+    <>
+      <NavBar />
+      <div className="ArticlePage">
+        <div className="Article">
+          <h2 className="ArticleTitle">{article.title}</h2>
+          <p className="ArticleTopic">Topic: {article.topic}</p>
+          <p className="ArticleBody">{article.body}</p>
+          <p className="ArticleAuthor">Written by: {article.author}</p>
+          <p className="ArticleDate">{article.created_at}</p>
+          <div className="ArticleLikes">
+            <p className="ArticleVoted">Votes: {article.votes}</p>
+            <button
+              onClick={(event) => {
+                VotesAdd(event);
+              }}
+              value="like"
+            >
+              {" "}
+              Like{" "}
+            </button>
+            <button
+              onClick={(event) => {
+                VotesAdd(event);
+              }}
+              value="dislike"
+            >
+              {" "}
+              Dislike
+            </button>
+          </div>
+        </div>
       </div>
-      <AddAComment comments={comments} setComments={setComments} />
+      <AddAComment
+        comments={comments}
+        setComments={setComments}
+        loggedInUser={loggedInUser}
+      />
       <Comments
         article_id={article_id}
         comments={comments}
         setComments={setComments}
+        loggedInUser={loggedInUser}
       />
-    </div>
+    </>
   );
 };
 
