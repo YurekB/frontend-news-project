@@ -26,6 +26,18 @@ const Comments = ({ article_id, comments, setComments, loggedInUser }) => {
     });
   };
 
+  const ButtonFunc = ({ comm }) => {
+    if (loggedInUser === comm.author) {
+      return (
+        <button value={comm.comment_id} onClick={deleteComment}>
+          Delete
+        </button>
+      );
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div className="Comments">
       <h2>Comments:</h2>
@@ -42,9 +54,7 @@ const Comments = ({ article_id, comments, setComments, loggedInUser }) => {
                   <div className="CommentCreated"> {comm.created_at}</div>
                   <div className="CommentVotes">Votes: {comm.votes}</div>
                 </li>
-                <button value={comm.comment_id} onClick={deleteComment}>
-                  Delete
-                </button>
+                <ButtonFunc comm={comm} />
               </div>
             );
           })}
