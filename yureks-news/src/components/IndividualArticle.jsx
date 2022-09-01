@@ -89,18 +89,19 @@ const IndividualArticle = ({ loggedInUser }) => {
             </button>
           </div>
         </div>
+
+        <AddAComment
+          comments={comments}
+          setComments={setComments}
+          loggedInUser={loggedInUser}
+        />
+        <Comments
+          article_id={article_id}
+          comments={comments}
+          setComments={setComments}
+          loggedInUser={loggedInUser}
+        />
       </div>
-      <AddAComment
-        comments={comments}
-        setComments={setComments}
-        loggedInUser={loggedInUser}
-      />
-      <Comments
-        article_id={article_id}
-        comments={comments}
-        setComments={setComments}
-        loggedInUser={loggedInUser}
-      />
     </>
   );
 };

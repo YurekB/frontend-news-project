@@ -16,27 +16,33 @@ const AddAComment = ({ comments, setComments, loggedInUser }) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setComment({
-      body: event.target[0].value,
-      created_at: getCurrentDate(),
-      votes: 0,
-    });
 
-    postComment(article_id, comment)
-      .then((res) => {
-        setCommMsg("Comment added successfully!");
-        setComment({ username: loggedInUser, body: "" });
-      })
-      .catch(() => {
-        setCommMsg("An error occurred adding your comment!");
-        setComment({ username: loggedInUser, body: "" });
+    if (loggedInUser === "") {
+      setCommMsg("You must be logged in to comment!");
+      setComment({ username: loggedInUser, body: "" });
+    } else {
+      setComment({
+        body: event.target[0].value,
+        created_at: getCurrentDate(),
+        votes: 0,
       });
 
-    setInterval(setCommMsg(""), 1000);
+      postComment(article_id, comment)
+        .then((res) => {
+          setCommMsg("Comment added successfully!");
+          setComment({ username: loggedInUser, body: "" });
+        })
+        .catch(() => {
+          setCommMsg("An error occurred adding your comment!");
+          setComment({ username: loggedInUser, body: "" });
+        });
 
-    getArticleComments(article_id).then((res) => {
-      setComments(res);
-    });
+      setInterval(setCommMsg(""), 1000);
+
+      getArticleComments(article_id).then((res) => {
+        setComments(res);
+      });
+    }
 
     event.target[0].value = "";
   };

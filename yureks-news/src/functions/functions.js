@@ -11,7 +11,7 @@ export const getTopics = () => {
 export const getArticles = (paramsObj) => {
   if (paramsObj) {
     return axios
-      .get("https://yureks-app.herokuapp.com/api/articles", {
+      .get("https://yureks-app.herokuapp.com/api/articles?limit=100", {
         params: paramsObj,
       })
       .then((res) => {
@@ -19,7 +19,7 @@ export const getArticles = (paramsObj) => {
       });
   } else {
     return axios
-      .get("https://yureks-app.herokuapp.com/api/articles")
+      .get("https://yureks-app.herokuapp.com/api/articles?limit=100")
       .then((res) => {
         return res.data.articles;
       });
@@ -29,15 +29,20 @@ export const getArticles = (paramsObj) => {
 export const getArticleByTopic = (topic, paramsObj) => {
   if (paramsObj) {
     return axios
-      .get(`https://yureks-app.herokuapp.com/api/articles?topic=${topic}`, {
-        params: paramsObj,
-      })
+      .get(
+        `https://yureks-app.herokuapp.com/api/articles?topic=${topic}&limit=100`,
+        {
+          params: paramsObj,
+        }
+      )
       .then((res) => {
         return res.data.articles;
       });
   }
   return axios
-    .get(`https://yureks-app.herokuapp.com/api/articles?topic=${topic}`)
+    .get(
+      `https://yureks-app.herokuapp.com/api/articles?topic=${topic}&limit=100`
+    )
     .then((res) => {
       return res.data.articles;
     });
@@ -45,7 +50,7 @@ export const getArticleByTopic = (topic, paramsObj) => {
 
 export const getArticleById = (id) => {
   return axios
-    .get(`https://yureks-app.herokuapp.com/api/articles/${id}`)
+    .get(`https://yureks-app.herokuapp.com/api/articles/${id}?limit=100`)
     .then((res) => {
       return res.data.article;
     });
