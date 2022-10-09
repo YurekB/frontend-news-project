@@ -5,11 +5,17 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   const [topics, setTopics] = useState([]);
 
+  const loadingText = [];
+
   useEffect(() => {
     getTopics().then((res) => {
       setTopics(res);
     });
   }, []);
+
+  if (topics.length === 0) {
+    loadingText.push("TOPICS LOADING...");
+  }
 
   return (
     <div className="NavList">
@@ -17,6 +23,7 @@ const NavBar = () => {
         <Link to="/articles">
           <li key="AllArticles">All Articles</li>
         </Link>
+
         {topics.map((topic) => {
           return (
             <Link to={`/topics/${topic.slug}`}>
@@ -27,6 +34,7 @@ const NavBar = () => {
           );
         })}
       </ul>
+      <p>{loadingText[0]}</p>
     </div>
   );
 };
